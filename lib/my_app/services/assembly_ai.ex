@@ -45,7 +45,6 @@ defmodule MyApp.Services.AssemblyAi do
     end
   end
 
-
   # Uploads an audio file to AssemblyAI's temporary storage.
 
   ## Parameters
@@ -78,7 +77,6 @@ defmodule MyApp.Services.AssemblyAi do
     end
   end
 
-
   # Starts a new transcription job for the given audio URL.
 
   ## Parameters
@@ -110,7 +108,6 @@ defmodule MyApp.Services.AssemblyAi do
       _ -> {:error, "Failed to create transcription job. Status: #{response.status}"}
     end
   end
-
 
   # Polls AssemblyAI for transcription completion status.
 
