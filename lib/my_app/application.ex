@@ -13,6 +13,7 @@ defmodule MyApp.Application do
       |> Jason.decode!()
 
     source = {:service_account, credentials}
+
     children = [
       MyAppWeb.Telemetry,
       MyApp.Repo,
