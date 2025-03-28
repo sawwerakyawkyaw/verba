@@ -9,7 +9,6 @@ defmodule MyApp.Clients.ClaudeAi do
   """
 
   @api_url "https://api.anthropic.com/v1/messages"
-  @api_key System.get_env("ANTHROPIC_API_KEY")
 
   def chat_completion(user_input) do
     case Req.post(@api_url,
@@ -19,7 +18,7 @@ defmodule MyApp.Clients.ClaudeAi do
              messages: [%{role: "user", content: user_input}]
            },
            headers: [
-             {"x-api-key", @api_key},
+             {"x-api-key", api_key()},
              {"anthropic-version", "2023-06-01"},
              {"content-type", "application/json"}
            ]
@@ -38,6 +37,8 @@ defmodule MyApp.Clients.ClaudeAi do
         {:error, "Request failed: #{inspect(reason)}"}
     end
   end
+
+  defp api_key(), do: System.get_env("ANTHROPIC_API_KEY")
 
   # Private helper function to extract text from the response body
   defp get_text_from_response(body) when is_map(body) do

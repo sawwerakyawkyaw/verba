@@ -17,7 +17,7 @@ defmodule MyApp.Services.AssemblyAi do
   @assembly_ai_url "https://api.assemblyai.com/v2"
   # 3 seconds
   @poll_interval 3000
-  @api_key "520238eeb282493380557f2afb277ca6"
+  @api_key System.get_env("ASSEMBLYAI_API_KEY")
   @max_attempts 30
 
   @doc """

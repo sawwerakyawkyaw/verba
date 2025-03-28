@@ -17,6 +17,8 @@ defmodule MyApp.Scenarios.ScenarioFactory do
   def get_module(scenario) do
     case scenario do
       :restaurant -> MyApp.Scenarios.RestaurantScenario
+      :supermarket -> MyApp.Scenarios.SupermarketScenario
+      :train_station -> MyApp.Scenarios.TrainStationScenario
       _ -> raise "Unknown scenario: #{scenario}"
     end
   end
