@@ -1,20 +1,29 @@
 defmodule MyApp.Clients.ClaudeAi do
+  @moduledoc """
+  Client module for interacting with Claude AI's API.
+  Provides functionality to generate text responses using Claude's language model.
+
+  ## Example
+      {:ok, response} = MyApp.Clients.ClaudeAi.chat_completion("Hello, how are you?")
+      # => {:ok, "I'm doing well, thank you for asking! How can I assist you today?"}
+  """
+
   @api_url "https://api.anthropic.com/v1/messages"
   @api_key System.get_env("ANTHROPIC_API_KEY")
 
   def chat_completion(user_input) do
     case Req.post(@api_url,
-      json: %{
-        model: "claude-3-7-sonnet-20250219",
-        max_tokens: 1024,
-        messages: [%{role: "user", content: user_input}]
-      },
-      headers: [
-        {"x-api-key", @api_key},
-        {"anthropic-version", "2023-06-01"},
-        {"content-type", "application/json"}
-      ]
-    ) do
+           json: %{
+             model: "claude-3-7-sonnet-20250219",
+             max_tokens: 1024,
+             messages: [%{role: "user", content: user_input}]
+           },
+           headers: [
+             {"x-api-key", @api_key},
+             {"anthropic-version", "2023-06-01"},
+             {"content-type", "application/json"}
+           ]
+         ) do
       {:ok, %Req.Response{status: 200, body: body}} ->
         # Extract the text from the response
         case get_text_from_response(body) do
