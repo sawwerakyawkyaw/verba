@@ -94,7 +94,7 @@ defmodule MyApp.Services.AssemblyAi do
       {"Content-Type", "application/json"}
     ]
 
-    body = %{audio_url: audio_url, language_code: "de"}
+    body = %{audio_url: audio_url, language_code: "zh"}
 
     response =
       Req.post!(
