@@ -1,4 +1,3 @@
-
 defmodule MyApp.Scenarios.ScenarioFactory do
   @moduledoc """
   Factory for mapping scenario atoms to their corresponding modules.
@@ -21,5 +20,13 @@ defmodule MyApp.Scenarios.ScenarioFactory do
       :train_station -> MyApp.Scenarios.TrainStationScenario
       _ -> raise "Unknown scenario: #{scenario}"
     end
+  end
+
+  @doc """
+  Returns a list of all available scenario atoms.
+  """
+  @spec list_scenarios() :: [scenario]
+  def list_scenarios() do
+    [:restaurant, :supermarket, :train_station]
   end
 end

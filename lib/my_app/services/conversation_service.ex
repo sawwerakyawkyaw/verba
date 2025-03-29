@@ -17,9 +17,12 @@ defmodule MyApp.Services.ConversationService do
   alias MyApp.Scenarios.ScenarioFactory
   # Type definitions for Dialyzer
   @type message :: %{String.t() => String.t()}
-  @type scenario :: :restaurant  # Add more scenarios as atoms here
+  # Add more scenarios as atoms here
+  @type scenario :: :restaurant
   @type state :: :start | :continue
-  @type result :: {:ok, %{text: String.t(), translation: String.t(), audio_file_path: String.t()}} | {:error, String.t()}
+  @type result ::
+          {:ok, %{text: String.t(), translation: String.t(), audio_file_path: String.t()}}
+          | {:error, String.t()}
 
   @doc """
   Handles a conversation based on a scenario and message history.
@@ -54,10 +57,13 @@ defmodule MyApp.Services.ConversationService do
     system_message = %{"role" => "system", "content" => system_prompt}
 
     # Build message list
-    default_user_message = if is_conversation_new, do: nil, else: %{"role" => "user", "content" => "Hallo!"}
+    default_user_message =
+      if is_conversation_new, do: nil, else: %{"role" => "user", "content" => "Hallo!"}
+
     conversation_messages =
       case {is_conversation_new, messages} do
-        {true, _} -> [system_message]  # For :start, no user message needed
+        # For :start, no user message needed
+        {true, _} -> [system_message]
         {false, []} -> [system_message, default_user_message]
         {false, msgs} -> [system_message | msgs]
       end

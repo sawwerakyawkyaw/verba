@@ -1,0 +1,31 @@
+<div class="h-full w-full max-w-3xl flex flex-col mx-auto bg-gray-50 drop-shadow text-gray-700">
+  <div class="shrink-0 w-full">
+    <form phx-submit="start_role_play" class="border-t border-gray-200 p-4 space-y-2">
+      <input type="radio" name="scenario" value="restaurant" />
+      <label for="html">Restaurant</label>
+      <br />
+      <input type="radio" id="css" name="scenario" value="supermarket" />
+      <label for="css">Supermarket</label>
+      <br />
+      <input type="radio" id="javascript" name="scenario" value="train_station" />
+      <label for="javascript">Train Station</label>
+      <div class="flex justify-end">
+        <button class="bg-gray-200 hover:bg-gray-300 transition px-3 py-1.5 rounded flex items-center justify-center">
+          Send
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="h-full w-full max-w-3xl flex flex-col mx-auto bg-gray-50 drop-shadow text-gray-700">
+  <ul class="grow flex flex-col-reverse overflow-y-auto">
+    <li :for={response <- @responses}>
+      <p><strong>Text:</strong> {response.text}</p>
+      <p><strong>Translation:</strong> {response.translation}</p>
+      <p><strong>Audio_File_Path:</strong> {response.audio_file_path}</p>
+    </li>
+  </ul>
+</div>
+
+
