@@ -1,6 +1,6 @@
 defmodule MyApp.Clients.GTTS do
   @api_url "https://texttospeech.googleapis.com/v1/text:synthesize"
-  @audio_dir "audio"
+  @audio_dir "priv/static/audios"  # Updated to use priv/static directory
 
   @doc """
   Synthesizes speech from the given text using Google's Text-to-Speech API.
@@ -57,12 +57,14 @@ defmodule MyApp.Clients.GTTS do
   defp save_audio_file(audio_content) do
     # Ensure the directory exists
     File.mkdir_p!(@audio_dir)
-    file_path = Path.join(@audio_dir, "#{System.system_time(:millisecond)}.mp3")
+    filename = "#{System.system_time(:millisecond)}.mp3"
+    file_path = Path.join(@audio_dir, filename)
+    web_path = "audios/#{filename}"  # Path for web access
 
     case File.write(file_path, Base.decode64!(audio_content)) do
       :ok ->
         IO.puts("Audio file saved: #{file_path}")
-        {:ok, file_path}
+        {:ok, web_path}  # Return the web-accessible path instead of file system path
 
       {:error, reason} ->
         {:error, "Failed to save file: #{inspect(reason)}"}

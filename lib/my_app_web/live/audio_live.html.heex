@@ -11,7 +11,7 @@
       <label for="javascript">Train Station</label>
       <div class="flex justify-end">
         <button class="bg-gray-200 hover:bg-gray-300 transition px-3 py-1.5 rounded flex items-center justify-center">
-          Send
+          Start Role Play
         </button>
       </div>
     </form>
@@ -24,8 +24,9 @@
       <p><strong>Text:</strong> {response.text}</p>
       <p><strong>Translation:</strong> {response.translation}</p>
       <p><strong>Audio_File_Path:</strong> {response.audio_file_path}</p>
+      <audio controls autoplay>
+        <source src={hd(@responses).audio_file_path} type="audio/mpeg" />
+      </audio>
     </li>
   </ul>
 </div>
-
-
