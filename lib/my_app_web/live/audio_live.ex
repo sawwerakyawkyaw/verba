@@ -21,4 +21,9 @@ defmodule MyAppWeb.AudioLive do
         {:noreply, put_flash(socket, :error, "Conversation failed: #{reason}")}
     end
   end
+
+  @impl true
+  def handle_event("audio_ended", _, socket) do
+    {:noreply, push_event(socket, "stop_animation", %{})}
+  end
 end

@@ -1,23 +1,178 @@
-<div class="h-full w-full max-w-3xl flex flex-col mx-auto bg-gray-50 drop-shadow text-gray-700">
+<div class="h-full w-full max-w-3xl flex flex-col mx-auto bg-gray-50 drop-shadow text-gray-700 border-t border-gray-200 p-4 space-y-2">
   <div class="shrink-0 w-full">
-    <form phx-submit="start_role_play" class="border-t border-gray-200 p-4 space-y-2">
-      <input type="radio" name="scenario" value="restaurant" />
-      <label for="html">Restaurant</label>
-      <br />
-      <input type="radio" id="css" name="scenario" value="supermarket" />
-      <label for="css">Supermarket</label>
-      <br />
-      <input type="radio" id="javascript" name="scenario" value="train_station" />
-      <label for="javascript">Train Station</label>
-      <div class="flex justify-end">
+    <h2 class="text-2xl font-bold text-center py-4">Choose your scenario</h2>
+    <form phx-submit="start_role_play" class="">
+      <div class="grid grid-cols-3 gap-4 p-4">
+        <div class="relative">
+          <input
+            type="radio"
+            id="restaurant"
+            name="scenario"
+            value="restaurant"
+            class="hidden peer"
+          />
+          <label
+            for="restaurant"
+            class="block p-4 text-center bg-white border rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:bg-blue-50"
+          >
+            <div class="flex flex-col items-center">
+              <svg
+                class="w-8 h-8 mb-2 peer-checked:text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-utensils-icon lucide-utensils"
+              >
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+              </svg>
+              <span class="font-medium">Restaurant</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="relative">
+          <input
+            type="radio"
+            id="supermarket"
+            name="scenario"
+            value="supermarket"
+            class="hidden peer"
+          />
+          <label
+            for="supermarket"
+            class="block p-4 text-center bg-white border rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:bg-blue-50"
+          >
+            <div class="flex flex-col items-center">
+              <svg
+                class="w-8 h-8 mb-2"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-store-icon lucide-store"
+              >
+                <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" /><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" /><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" /><path d="M2 7h20" /><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+              </svg>
+              <span class="font-medium">Supermarket</span>
+            </div>
+          </label>
+        </div>
+
+        <div class="relative">
+          <input
+            type="radio"
+            id="train_station"
+            name="scenario"
+            value="train_station"
+            class="hidden peer"
+          />
+          <label
+            for="train_station"
+            class="block p-4 text-center bg-white border rounded-lg cursor-pointer hover:bg-gray-50 peer-checked:border-blue-500 peer-checked:bg-blue-50"
+          >
+            <div class="flex flex-col items-center">
+              <svg
+                class="w-8 h-8 mb-2 hover:text-blue-500"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-train-front-tunnel-icon lucide-train-front-tunnel"
+              >
+                <path d="M2 22V12a10 10 0 1 1 20 0v10" /><path d="M15 6.8v1.4a3 2.8 0 1 1-6 0V6.8" /><path d="M10 15h.01" /><path d="M14 15h.01" /><path d="M10 19a4 4 0 0 1-4-4v-3a6 6 0 1 1 12 0v3a4 4 0 0 1-4 4Z" /><path d="m9 19-2 3" /><path d="m15 19 2 3" />
+              </svg>
+              <span class="font-medium">Train Station</span>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-8 p-4">
+        <%!-- Start Role Play Button --%>
         <button
           id="playButton"
-          class="bg-gray-200 hover:bg-gray-300 transition px-3 py-1.5 rounded flex items-center justify-center"
+          class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-3 py-1.5 rounded flex items-center justify-center"
         >
           Start Role Play
         </button>
       </div>
     </form>
+
+    <div class="flex flex-col items-center gap-8">
+      <div class="w-[250px] h-[250px] bg-white shadow-lg rounded-full flex justify-center items-center">
+        <div
+          id="wave1"
+          class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+        >
+        </div>
+        <div
+          id="wave2"
+          class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+        >
+        </div>
+        <div
+          id="wave3"
+          class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+        >
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center space-x-4 mt-4">
+      <button class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-6 py-2 rounded">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-mic-icon lucide-mic"
+        >
+          <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" /><path d="M19 10v2a7 7 0 0 1-14 0v-2" /><line
+            x1="12"
+            x2="12"
+            y1="19"
+            y2="22"
+          />
+        </svg>
+      </button>
+      <button class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-6 py-2 rounded">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-languages-icon lucide-languages"
+        >
+          <path d="m5 8 6 6" /><path d="m4 14 6-6 2-3" /><path d="M2 5h12" /><path d="M7 2h1" /><path d="m22 22-5-10-5 10" /><path d="M14 18h6" />
+        </svg>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -36,7 +191,7 @@
 
 <%!-- animate-wave [animation-delay:0s] --%>
 
-<div class="flex flex-col items-center gap-8">
+<%!-- <div class="flex flex-col items-center gap-8">
   <!-- Audio Wave Container -->
   <div class="w-[250px] h-[250px] bg-white shadow-lg rounded-full flex justify-center items-center">
     <div
@@ -75,4 +230,4 @@
     >
     </div>
   </div>
-</div>
+</div> --%>
