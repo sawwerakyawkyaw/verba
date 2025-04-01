@@ -10,7 +10,10 @@
       <input type="radio" id="javascript" name="scenario" value="train_station" />
       <label for="javascript">Train Station</label>
       <div class="flex justify-end">
-        <button class="bg-gray-200 hover:bg-gray-300 transition px-3 py-1.5 rounded flex items-center justify-center">
+        <button
+          id="playButton"
+          class="bg-gray-200 hover:bg-gray-300 transition px-3 py-1.5 rounded flex items-center justify-center"
+        >
           Start Role Play
         </button>
       </div>
@@ -24,9 +27,52 @@
       <p><strong>Text:</strong> {response.text}</p>
       <p><strong>Translation:</strong> {response.translation}</p>
       <p><strong>Audio_File_Path:</strong> {response.audio_file_path}</p>
-      <audio controls autoplay>
+      <audio id="audioPlayer" class="hidden" controls autoplay>
         <source src={hd(@responses).audio_file_path} type="audio/mpeg" />
       </audio>
     </li>
   </ul>
+</div>
+
+<%!-- animate-wave [animation-delay:0s] --%>
+
+<div class="flex flex-col items-center gap-8">
+  <!-- Audio Wave Container -->
+  <div class="w-[250px] h-[250px] bg-white shadow-lg rounded-full flex justify-center items-center">
+    <div
+      id="wave1"
+      class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+    >
+    </div>
+    <div
+      id="wave2"
+      class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+    >
+    </div>
+    <div
+      id="wave3"
+      class="w-[20px] h-[20px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+    >
+    </div>
+  </div>
+</div>
+
+<div class="flex flex-col items-center gap-8">
+  <div class="w-[250px] h-[250px] bg-white shadow-lg rounded-full flex justify-center items-center">
+    <div
+      class="w-[20px] h-[70px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+      id="wave1"
+    >
+    </div>
+    <div
+      class="w-[20px] h-[70px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+      id="wave2"
+    >
+    </div>
+    <div
+      class="w-[20px] h-[70px] mx-[10px] bg-black rounded-[10px] transition-all duration-300"
+      id="wave3"
+    >
+    </div>
+  </div>
 </div>

@@ -15,7 +15,19 @@ module.exports = {
     extend: {
       colors: {
         brand: "#FD4F00",
-      }
+      },
+      keyframes: {
+        wave: {
+          '0%, 100%': { transform: 'scaleY(1)' },
+          '50%': { transform: 'scaleY(0.3)' },
+        }
+      },
+      animation: {
+        wave: 'wave 1.2s infinite ease-in-out',
+      },
+      transformOrigin: {
+        'bottom': 'bottom',
+      },
     },
   },
   plugins: [
