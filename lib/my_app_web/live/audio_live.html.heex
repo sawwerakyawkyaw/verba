@@ -62,7 +62,7 @@
                 stroke-linejoin="round"
                 class="lucide lucide-store-icon lucide-store"
               >
-                <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" /><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" /><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" /><path d="M2 7h20" /><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
+                <path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7" /><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" /><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4" /><path d="M2 7h20" /><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7" />
               </svg>
               <span class="font-medium">Supermarket</span>
             </div>
@@ -134,7 +134,7 @@
       </div>
     </div>
 
-    <div class="flex justify-center space-x-4 mt-4">
+    <div class="flex justify-center space-x-4 py-4">
       <button class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-6 py-2 rounded">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -156,7 +156,10 @@
           />
         </svg>
       </button>
-      <button class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-6 py-2 rounded">
+      <button
+        phx-click="toggle_translation"
+        class="bg-white border border-lg cursor-pointer hover:bg-gray-100 transition ease-in-out px-6 py-2 rounded"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -176,17 +179,42 @@
   </div>
 </div>
 
-<div class="h-full w-full max-w-3xl flex flex-col mx-auto bg-gray-50 drop-shadow text-gray-700">
-  <ul class="grow flex flex-col-reverse overflow-y-auto">
-    <li :for={response <- @responses}>
-      <p><strong>Text:</strong> {response.text}</p>
-      <p><strong>Translation:</strong> {response.translation}</p>
-      <p><strong>Audio_File_Path:</strong> {response.audio_file_path}</p>
-      <audio id="audioPlayer" phx-hook="AudioPlayer" class="hidden" controls autoplay>
-        <source src={hd(@responses).audio_file_path} type="audio/mpeg" />
-      </audio>
-    </li>
-  </ul>
+<div :for={response <- @responses}>
+  <div :if={@show_translation} class="flex flex-col bg-gray-50 drop-shadow text-gray-700 py-4">
+    <div
+      :if={@show_original}
+      class="w-[50%] mx-auto flex justify-center bg-white rounded-lg shadow-sm"
+    >
+      <p class="text-center py-4 text-gray-700">{response.text}</p>
+    </div>
+    <div
+      :if={!@show_original}
+      class="w-[50%] mx-auto flex justify-center bg-white rounded-lg shadow-sm"
+    >
+      <p class="text-center py-4 text-gray-700">{response.translation}</p>
+    </div>
+
+    <div class="flex items-center justify-center m-4">
+      <div class="flex space-x-2">
+        <button
+          phx-click="show_original"
+          class={"px-3 py-1 text-sm rounded-md transition " <> if(@show_original, do: "bg-blue-500 text-white", else: "bg-gray-200 text-gray-700")}
+        >
+          CN
+        </button>
+        <button
+          phx-click="show_translated"
+          class={"px-3 py-1 text-sm rounded-md transition " <> if(!@show_original, do: "bg-blue-500 text-white", else: "bg-gray-200 text-gray-700")}
+        >
+          EN
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="audioPlayer" phx-hook="AudioPlayer" class="hidden" controls autoplay>
+    <source src={hd(@responses).audio_file_path} type="audio/mpeg" />
+  </audio>
 </div>
 
 <script>

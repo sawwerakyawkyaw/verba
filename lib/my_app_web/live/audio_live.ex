@@ -6,10 +6,21 @@ defmodule MyAppWeb.AudioLive do
   @impl true
   def mount(_params, _session, socket) do
     {:ok,
-      socket
-      |> assign(:responses, [])
-      |> push_event("init_audio_hooks", %{})
-    }
+     assign(socket,
+       responses: [],
+       show_translation: false,
+       show_original: true
+     )}
+  end
+
+  @impl true
+  def handle_event("show_original", _, socket) do
+    {:noreply, assign(socket, :show_original, true)}
+  end
+
+  @impl true
+  def handle_event("show_translated", _, socket) do
+    {:noreply, assign(socket, :show_original, false)}
   end
 
   @impl true
@@ -19,15 +30,16 @@ defmodule MyAppWeb.AudioLive do
     case ConversationService.converse(scenario_atom, []) do
       {:ok, response_map} ->
         updated_response = [response_map | socket.assigns.responses]
-        {:noreply,
-          socket
-          |> assign(:responses, updated_response)
-          |> push_event("start_animation", %{})
-        }
+        {:noreply, assign(socket, :responses, updated_response)}
 
       {:error, reason} ->
         {:noreply, put_flash(socket, :error, "Conversation failed: #{reason}")}
     end
+  end
+
+  @impl true
+  def handle_event("toggle_translation", _, socket) do
+    {:noreply, assign(socket, :show_translation, !socket.assigns.show_translation)}
   end
 
   @impl true
