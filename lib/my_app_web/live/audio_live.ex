@@ -5,7 +5,11 @@ defmodule MyAppWeb.AudioLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    {:ok, assign(socket, :responses, [])}
+    {:ok,
+      socket
+      |> assign(:responses, [])
+      |> push_event("init_audio_hooks", %{})
+    }
   end
 
   @impl true
@@ -15,7 +19,11 @@ defmodule MyAppWeb.AudioLive do
     case ConversationService.converse(scenario_atom, []) do
       {:ok, response_map} ->
         updated_response = [response_map | socket.assigns.responses]
-        {:noreply, assign(socket, :responses, updated_response)}
+        {:noreply,
+          socket
+          |> assign(:responses, updated_response)
+          |> push_event("start_animation", %{})
+        }
 
       {:error, reason} ->
         {:noreply, put_flash(socket, :error, "Conversation failed: #{reason}")}
